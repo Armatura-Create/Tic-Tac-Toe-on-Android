@@ -1,7 +1,7 @@
 package com.example.alex.tictactoe;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +11,8 @@ import static com.example.alex.tictactoe.R.string.O;
 import static com.example.alex.tictactoe.R.string.X;
 import static com.example.alex.tictactoe.R.string.draw;
 import static com.example.alex.tictactoe.R.string.status_game;
+import static com.example.alex.tictactoe.R.string.stroke_chross;
+import static com.example.alex.tictactoe.R.string.stroke_zero;
 import static com.example.alex.tictactoe.R.string.win_chross;
 import static com.example.alex.tictactoe.R.string.win_zero;
 
@@ -37,7 +39,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.tictactoe_main);
         strokeNumber = getIntent().getIntExtra("strokeNumber", 0);
         initBoard();
-
     }
 
     private Button[][] initBoard() {
@@ -66,10 +67,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (Stroke(strokeNumber)) {
             button.setText(X);
             button.setClickable(false);
+            mTVGameStatus.setText(stroke_zero);
             strokeNumber++;
         } else {
             button.setText(O);
             button.setClickable(false);
+            mTVGameStatus.setText(stroke_chross);
             strokeNumber++;
         }
         if (won(board)) {
@@ -90,7 +93,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             for (Button anABoard : aBoard) {
                 anABoard.setClickable(true);
                 anABoard.setText("");
-                anABoard.setBackgroundColor(Color.parseColor("#53ec00"));
+                anABoard.setBackgroundColor(ContextCompat.getColor(this, R.color.greenBoard));
             }
         }
         strokeNumber = getIntent().getIntExtra("strokeNumber", 0);
@@ -101,50 +104,58 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if ((i == 0 || i == 1 || i == 2) && j == 0) {
-                    if (buttonText(board[i][j]).equals(buttonText(board[i][j + 1])) && buttonText(board[i][j + 1]).equals(buttonText(board[i][j + 2]))) {
+                    if (buttonText(board[i][j]).equals(buttonText(board[i][j + 1])) &&
+                            buttonText(board[i][j + 1]).equals(buttonText(board[i][j + 2]))) {
                         if (ifCheck(board[i][j])) {
-                            board[i][j].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i][j + 1].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i][j + 2].setBackgroundColor(Color.parseColor("#ff5f00"));
+                            board[i][j].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i][j+1].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i][j+2].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
                             return true;
                         }
                         return false;
                     }
                 }
                 if ((j == 0 || j == 1 || j == 2) && i == 0) {
-                    if (buttonText(board[i][j]).equals(buttonText(board[i + 1][j])) && buttonText(board[i + 1][j]).equals(buttonText(board[i + 2][j]))) {
+                    if (buttonText(board[i][j]).equals(buttonText(board[i + 1][j])) &&
+                            buttonText(board[i + 1][j]).equals(buttonText(board[i + 2][j]))) {
                         if (ifCheck(board[i][j])) {
-                            board[i][j].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i + 1][j].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i + 2][j].setBackgroundColor(Color.parseColor("#ff5f00"));
+                            board[i][j].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i+ 1][j].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i+ 2][j].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
                             return true;
                         }
                         return false;
                     }
                 }
                 if (i == 0 && j == 0) {
-                    if (buttonText(board[i][j]).equals(buttonText(board[i + 1][j + 1])) && buttonText(board[i + 1][j + 1]).equals(buttonText(board[i + 2][j + 2]))) {
+                    if (buttonText(board[i][j]).equals(buttonText(board[i + 1][j + 1])) &&
+                            buttonText(board[i + 1][j + 1]).equals(buttonText(board[i+2][j+2]))) {
                         if (ifCheck(board[i][j])) {
-                            board[i][j].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i + 1][j + 1].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i + 2][j + 2].setBackgroundColor(Color.parseColor("#ff5f00"));
+                            board[i][j].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i+1][j+1].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i+2][j+2].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
                             return true;
                         }
                         return false;
                     }
                 }
                 if (i == 2 && j == 0) {
-                    if (buttonText(board[i][j]).equals(buttonText(board[i - 1][j + 1])) && buttonText(board[i - 1][j + 1]).equals(buttonText(board[i - 2][j + 2]))) {
+                    if (buttonText(board[i][j]).equals(buttonText(board[i - 1][j + 1])) &&
+                            buttonText(board[i - 1][j + 1]).equals(buttonText(board[i-2][j+2]))) {
                         if (ifCheck(board[i][j])) {
-                            board[i][j].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i - 1][j + 1].setBackgroundColor(Color.parseColor("#ff5f00"));
-                            board[i - 2][j + 2].setBackgroundColor(Color.parseColor("#ff5f00"));
+                            board[i][j].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i-1][j+1].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
+                            board[i-2][j+2].setBackgroundColor(ContextCompat.getColor(this, R.color.redBoard));
                             return true;
                         }
                         return false;
                     }
                 }
-                if (!buttonText(board[0][0]).equals("") && !buttonText(board[1][0]).equals("") && !buttonText(board[2][0]).equals("") && !buttonText(board[0][1]).equals("") && !buttonText(board[1][1]).equals("") && !buttonText(board[2][1]).equals("") && !buttonText(board[0][2]).equals("") && !buttonText(board[1][2]).equals("") && !buttonText(board[2][2]).equals("")) {
+                if (!buttonText(board[0][0]).equals("") && !buttonText(board[1][0]).equals("") &&
+                        !buttonText(board[2][0]).equals("") && !buttonText(board[0][1]).equals("") &&
+                        !buttonText(board[1][1]).equals("") && !buttonText(board[2][1]).equals("") &&
+                        !buttonText(board[0][2]).equals("") && !buttonText(board[1][2]).equals("") &&
+                        !buttonText(board[2][2]).equals("")) {
                     won = draw;
                     return true;
                 }
@@ -156,7 +167,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public boolean ifCheck(View board) {
         if (buttonText(board).equals("")) {
             return false;
-        } else if (buttonText(board).equals(X)) {
+        } else if (buttonText(board).equals("X")) {
             won = win_chross;
             return true;
         } else {

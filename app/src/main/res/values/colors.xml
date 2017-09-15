@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="greenBoard">#53ec00</color>
-    <string name="redBoard">#ff5f00</string>
+    <color name="redBoard">#ff5f00</color>
 </resources>
