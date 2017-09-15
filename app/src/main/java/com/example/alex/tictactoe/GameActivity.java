@@ -11,6 +11,8 @@ import static com.example.alex.tictactoe.R.string.O;
 import static com.example.alex.tictactoe.R.string.X;
 import static com.example.alex.tictactoe.R.string.draw;
 import static com.example.alex.tictactoe.R.string.status_game;
+import static com.example.alex.tictactoe.R.string.stroke_chross;
+import static com.example.alex.tictactoe.R.string.stroke_zero;
 import static com.example.alex.tictactoe.R.string.win_chross;
 import static com.example.alex.tictactoe.R.string.win_zero;
 
@@ -37,7 +39,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.tictactoe_main);
         strokeNumber = getIntent().getIntExtra("strokeNumber", 0);
         initBoard();
-
     }
 
     private Button[][] initBoard() {
@@ -66,10 +67,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (Stroke(strokeNumber)) {
             button.setText(X);
             button.setClickable(false);
+            mTVGameStatus.setText(stroke_zero);
             strokeNumber++;
         } else {
             button.setText(O);
             button.setClickable(false);
+            mTVGameStatus.setText(stroke_chross);
             strokeNumber++;
         }
         if (won(board)) {
@@ -156,7 +159,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public boolean ifCheck(View board) {
         if (buttonText(board).equals("")) {
             return false;
-        } else if (buttonText(board).equals(X)) {
+        } else if (buttonText(board).equals("X")) {
             won = win_chross;
             return true;
         } else {

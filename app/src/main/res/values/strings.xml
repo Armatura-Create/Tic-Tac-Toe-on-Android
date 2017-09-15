@@ -9,4 +9,6 @@
     <string name="draw">Draw</string>
     <string name="about_game">Players take turns to put on the free cells of the field 3x3 signs (one always crosses, the other always zeros). The first, which has built up 3 of its figures vertically, horizontally or diagonally, wins. To start the game, choose a cross or a notch the one who walks first.</string>>
     <string name="bt_back">Back</string>
+    <string name="stroke_chross">Walks Cross</string>
+    <string name="stroke_zero">Walks Zero</string>
 </resources>
