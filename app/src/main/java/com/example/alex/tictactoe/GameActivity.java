@@ -25,7 +25,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBT_7;
     private Button mBT_8;
     private Button mBT_9;
-    private Button mBTNewGame;
     private Button[][] board;
     private int won;
     private TextView mTVGameStatus;
@@ -38,7 +37,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.tictactoe_main);
         strokeNumber = getIntent().getIntExtra("strokeNumber", 0);
         initBoard();
-        mBTNewGame = (Button) findViewById(R.id.bt_newGame);
 
     }
 
